@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}知識庫文章列表{% endblock %}
+
+{% block content %}
+<h1>知識庫</h1>
+<ul>
+  {% for article in articles %}
+    <li>
+      <a href="{% url 'article_detail' article_id=article.id %}">{{ article.title }}</a>
+      <small>發布於 {{ article.created_at|date:"Y-m-d" }}</small>
+    </li>
+  {% empty %}
+    <li>目前沒有文章。</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,7 +1,10 @@
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from .models import Forum, Thread
 
 def forum_index(request):
-    return HttpResponse("這是討論區首頁。")
+    forums = Forum.objects.all()
+    return render(request, 'forum/index.html', {'forums': forums})
 
 def thread_detail(request, thread_id):
-    return HttpResponse(f"這是討論串詳細頁面：討論串 ID {thread_id}")
+    thread = get_object_or_404(Thread, pk=thread_id)
+    return render(request, 'forum/thread.html', {'thread': thread})

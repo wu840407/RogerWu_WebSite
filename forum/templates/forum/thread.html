@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ thread.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ thread.title }}</h1>
+<p><strong>建立者：</strong>{{ thread.creator.username }}</p>
+<p><strong>建立日期：</strong>{{ thread.created_at|date:"Y-m-d H:i" }}</p>
+
+<hr>
+<h3>回覆</h3>
+<ul>
+  {% for reply in thread.replies.all %}
+    <li>
+      <p><strong>{{ reply.author.username }}</strong> 說：</p>
+      <p>{{ reply.content }}</p>
+      <small>發布於 {{ reply.created_at|date:"Y-m-d H:i" }}</small>
+    </li>
+  {% empty %}
+    <li>目前沒有回覆。</li>
+  {% endfor %}
+</ul>
+
+<!-- 可在此加入回覆表單 -->
+{% endblock %}

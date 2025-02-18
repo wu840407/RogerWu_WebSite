@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}討論區版塊{% endblock %}
+
+{% block content %}
+<h1>討論區</h1>
+<ul>
+  {% for forum in forums %}
+    <li>
+      <a href="{% url 'forum_threads' forum_id=forum.id %}">{{ forum.name }}</a>
+      <p>{{ forum.description }}</p>
+    </li>
+  {% empty %}
+    <li>目前沒有版塊。</li>
+  {% endfor %}
+</ul>
+{% endblock %}

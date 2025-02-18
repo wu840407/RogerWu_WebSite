@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Article
 
-# Create your views here.
 def article_list(request):
-    return HttpResponse("這是知識庫文章列表頁面。")
+    articles = Article.objects.filter(published=True).order_by('-created_at')
+    return render(request, 'knowledgebase/list.html', {'articles': articles})
 
 def article_detail(request, article_id):
-    return HttpResponse(f"這是知識庫文章詳細頁面：文章 ID {article_id}")
+    article = get_object_or_404(Article, pk=article_id, published=True)
+    return render(request, 'knowledgebase/detail.html', {'article': article})
