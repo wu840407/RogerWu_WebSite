@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}部落格文章列表{% endblock %}
+
+{% block content %}
+<h1>部落格文章列表</h1>
+<ul>
+    {% for post in posts %}
+        <li>
+            <!-- 連結到文章詳細頁面，使用文章的 ID 作為參數 -->
+            <a href="{% url 'post_detail' post_id=post.id %}">{{ post.title }}</a>
+            <small>發布於 {{ post.created_at|date:"Y-m-d" }}</small>
+        </li>
+    {% empty %}
+        <li>目前沒有文章。</li>
+    {% endfor %}
+</ul>
+{% endblock %}
