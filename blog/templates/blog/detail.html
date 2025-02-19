@@ -9,5 +9,26 @@
 <div>
     {{ post.content|linebreaks }}
 </div>
+
+<hr>
+<h3>留言</h3>
+<ul>
+    {% for comment in post.comments.all %}
+        <li>
+            <p><strong>{{ comment.author }}</strong> 說：</p>
+            <p>{{ comment.content }}</p>
+            <small>發布於 {{ comment.created_at|date:"Y-m-d H:i" }}</small>
+        </li>
+    {% empty %}
+        <li>目前還沒有留言。</li>
+    {% endfor %}
+</ul>
+
+<h3>新增留言</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">送出留言</button>
+</form>
 <a href="{% url 'post_list' %}">返回文章列表</a>
 {% endblock %}
