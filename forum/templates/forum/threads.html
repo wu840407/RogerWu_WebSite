@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ forum.name }} - 討論串列表{% endblock %}
+
+{% block content %}
+<h1>{{ forum.name }}</h1>
+<p>{{ forum.description }}</p>
+
+<a class="btn btn-primary" href="{% url 'create_thread' forum_id=forum.id %}">發表新討論串</a>
+
+<hr>
+<h2>討論串</h2>
+<ul>
+  {% for thread in threads %}
+    <li>
+      <a href="{% url 'thread_detail' thread_id=thread.id %}">{{ thread.title }}</a>
+      <small>由 {{ thread.creator.username }} 發布於 {{ thread.created_at|date:"Y-m-d H:i" }}</small>
+    </li>
+  {% empty %}
+    <li>目前沒有討論串。</li>
+  {% endfor %}
+</ul>
+{% endblock %}

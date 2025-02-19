@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ thread.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ thread.title }}</h1>
+<p><strong>建立者：</strong>{{ thread.creator.username }}</p>
+<p><strong>建立日期：</strong>{{ thread.created_at|date:"Y-m-d H:i" }}</p>
+
+<hr>
+<h3>回覆</h3>
+<ul>
+  {% for reply in replies %}
+    <li>
+      <p><strong>{{ reply.author.username }}</strong> 說：</p>
+      <p>{{ reply.content }}</p>
+      <small>發布於 {{ reply.created_at|date:"Y-m-d H:i" }}</small>
+    </li>
+  {% empty %}
+    <li>目前還沒有回覆。</li>
+  {% endfor %}
+</ul>
+
+<hr>
+<h3>新增回覆</h3>
+{% if user.is_authenticated %}
+  <form method="post">
+    {% csrf_token %}
+    {{ reply_form.as_p }}
+    <button type="submit" class="btn btn-primary">送出回覆</button>
+  </form>
+{% else %}
+  <p><a href="{% url 'login' %}">請先登入</a>後發表回覆。</p>
+{% endif %}
+<a href="{% url 'forum_threads' forum_id=thread.forum.id %}">返回討論串列表</a>
+{% endblock %}
