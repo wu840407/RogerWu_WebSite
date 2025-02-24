@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # 從環境變數讀取 SECRET_KEY，如果環境變數沒有設定，則使用預設值
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-l5yi_x++#6rv42&$^&fo+1#9tt+ejxg_af5knp3$)hw-bm#6r#')
+SSECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '預設金鑰-僅供開發使用')
 
 # 從環境變數讀取 DEBUG 設定，預設為 True（開發時使用，生產環境請務必設定為 False）
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
@@ -142,7 +142,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+# 指定靜態檔案收集目錄
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
