@@ -6,7 +6,7 @@ from .settings import *  # 引入基礎設定
 DEBUG = False
 
 # 設定允許存取的主機名稱，請填入你網站的網域或 IP
-ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com', 'your-service.onrender.com']
+ALLOWED_HOSTS = ['rogerwu-website.onrender.com']
 
 # 安全性設定
 SECURE_SSL_REDIRECT = True          # 強制 HTTPS 連線
