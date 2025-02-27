@@ -90,10 +90,10 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 #     }
 # }
 # 讀取環境變數設定
-POSTGRES_DB = os.environ.get('POSTGRES_DB', 'roger_web')
-POSTGRES_USER = os.environ.get('POSTGRES_USER', 'postgres')
-POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', 'a.1234567')
-POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'localhost')
+POSTGRES_DB = os.environ.get('POSTGRES_DB', 'main_db_h0bb')
+POSTGRES_USER = os.environ.get('POSTGRES_USER', 'roger')
+POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', '80KVJNngx71076Vrp4iUkzNscqhSnITO')
+POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'dpg-cuvvm35svqrc73ag1mh0-a')
 POSTGRES_PORT = os.environ.get('POSTGRES_PORT', '5432')
 
 DATABASES = {
