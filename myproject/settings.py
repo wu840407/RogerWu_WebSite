@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
-
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -90,23 +90,28 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 #     }
 # }
 # 讀取環境變數設定
-POSTGRES_DB = os.environ.get('POSTGRES_DB', 'main_db_h0bb')
-POSTGRES_USER = os.environ.get('POSTGRES_USER', 'roger')
-POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', '80KVJNngx71076Vrp4iUkzNscqhSnITO')
-POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'dpg-cuvvm35svqrc73ag1mh0-a')
-POSTGRES_PORT = os.environ.get('POSTGRES_PORT', '5432')
+# POSTGRES_DB = os.environ.get('POSTGRES_DB', 'main_db_h0bb')
+# POSTGRES_USER = os.environ.get('POSTGRES_USER', 'roger')
+# POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', '80KVJNngx71076Vrp4iUkzNscqhSnITO')
+# POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'postgresql://roger:80KVJNngx71076Vrp4iUkzNscqhSnITO@dpg-cuvvm35svqrc73ag1mh0-a.oregon-postgres.render.com/main_db_h0bb')
+# POSTGRES_PORT = os.environ.get('POSTGRES_PORT', '5432')
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': POSTGRES_DB,
+#         'USER': POSTGRES_USER,
+#         'PASSWORD': POSTGRES_PASSWORD,
+#         'HOST': POSTGRES_HOST,
+#         'PORT': POSTGRES_PORT,
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': POSTGRES_DB,
-        'USER': POSTGRES_USER,
-        'PASSWORD': POSTGRES_PASSWORD,
-        'HOST': POSTGRES_HOST,
-        'PORT': POSTGRES_PORT,
-    }
+    'default': dj_database_url.config(
+        default="postgresql://roger:80KVJNngx71076Vrp4iUkzNscqhSnITO@dpg-cuvvm35svqrc73ag1mh0-a.oregon-postgres.render.com/main_db_h0bb",
+        conn_max_age=600,  # 保持連線
+    )
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
