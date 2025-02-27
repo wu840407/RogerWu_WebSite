@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # 從環境變數讀取 SECRET_KEY，如果環境變數沒有設定，則使用預設值
-SSECRET_KEY = os.getenv('SECRET_KEY', 'k4YoCmgmrmR7GjU42b9eSupNzqxKceqVv1C58bChcRwJZ7B1ol_qxsPNAAEePDUsMIw')
+SECRET_KEY = os.getenv('SECRET_KEY', 'k4YoCmgmrmR7GjU42b9eSupNzqxKceqVv1C58bChcRwJZ7B1ol_qxsPNAAEePDUsMIw')
 
 # 從環境變數讀取 DEBUG 設定，預設為 True（開發時使用，生產環境請務必設定為 False）
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
