@@ -5,21 +5,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}Roger的研究室{% endblock %}</title>
-  
+
   <!-- Bootstrap & Google Fonts -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* 預設字體與背景 */
+    /* 全局背景：淺灰 */
     body {
-      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f7fc; /* 淺灰底色，可依需求調整 */
+      background-color: #f4f7fc; /* 你想要的整站背景顏色 */
+      font-family: 'Roboto', sans-serif;
     }
 
-    /* 導覽列設計 */
+    /* 導覽列 */
     .navbar {
       background-color: #343a40;
     }
@@ -56,9 +56,8 @@
     </div>
   </nav>
 
-  <!-- 主內容區 -->
-  {% block content %}
-  {% endblock %}
+  <!-- 主要內容區域 -->
+  {% block content %}{% endblock %}
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
