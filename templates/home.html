@@ -1,88 +1,77 @@
-<!-- templates/home.html -->
 {% extends "base.html" %}
 
 {% block title %}首頁 - Roger的研究室{% endblock %}
 
 {% block content %}
-<!-- Hero Section with gradient background -->
-<section class="hero bg-gradient text-white text-center py-5">
-    <h1 class="display-4 mb-3" style="color: white; font-size: 4rem; font-weight: bold; font-family: 'Poppins', sans-serif;">歡迎來到 Roger 的研究室</h1>
-    <p class="lead mb-4" style="color: white; font-size: 1.25rem; font-family: 'Roboto', sans-serif;">探索科技、知識和討論的無限世界</p>
-    <a href="{% url 'cv' %}" class="btn btn-primary btn-lg">開始瀏覽</a>
+<section class="bg-gradient text-white d-flex flex-column justify-content-center align-items-center" style="min-height: 50vh;">
+  <h1 class="display-4 mb-3" style="font-family: 'Poppins', sans-serif; font-weight: bold;">
+    歡迎來到 Roger 的研究室
+  </h1>
+  <p class="lead mb-4" style="font-size: 1.25rem;">
+    探索科技、知識和討論的無限世界
+  </p>
+  <a href="#section-links" class="btn btn-primary btn-lg">開始瀏覽</a>
 </section>
 
-<!-- Main Links Section -->
+<!-- 其他內容區，使用 container 控制寬度 -->
 <section id="section-links" class="container py-5">
-    <h2 class="text-center mb-4" style="font-size: 2.5rem; font-weight: 600;">請選擇你想要瀏覽的區域：</h2>
-    <div class="row">
-        <!-- Blog Link -->
-        <div class="col-md-4 mb-4">
-            <a href="{% url 'post_list' %}" class="card text-dark shadow-lg rounded">
-                <div class="card-body text-center p-4">
-                    <h5 class="card-title" style="font-size: 1.5rem; font-weight: 500;">部落格</h5>
-                    <p class="card-text" style="font-size: 1rem;">閱讀我的最新文章與研究成果。</p>
-                </div>
-            </a>
+  <h2 class="text-center mb-4" style="font-size: 2.5rem; font-weight: 600;">
+    請選擇你想要瀏覽的區域：
+  </h2>
+  <div class="row">
+    <!-- 你的三個卡片 -->
+    <!-- Blog Link -->
+    <div class="col-md-4 mb-4">
+      <a href="{% url 'post_list' %}" class="card text-dark shadow-lg rounded">
+        <div class="card-body text-center p-4">
+          <h5 class="card-title" style="font-size: 1.5rem; font-weight: 500;">部落格</h5>
+          <p class="card-text" style="font-size: 1rem;">閱讀我的最新文章與研究成果。</p>
         </div>
-        <!-- Knowledge Base Link -->
-        <div class="col-md-4 mb-4">
-            <a href="{% url 'article_list' %}" class="card text-dark shadow-lg rounded">
-                <div class="card-body text-center p-4">
-                    <h5 class="card-title" style="font-size: 1.5rem; font-weight: 500;">知識庫</h5>
-                    <p class="card-text" style="font-size: 1rem;">探索科技與加密貨幣的知識庫。</p>
-                </div>
-            </a>
-        </div>
-        <!-- Forum Link -->
-        <div class="col-md-4 mb-4">
-            <a href="{% url 'forum_index' %}" class="card text-dark shadow-lg rounded">
-                <div class="card-body text-center p-4">
-                    <h5 class="card-title" style="font-size: 1.5rem; font-weight: 500;">討論區</h5>
-                    <p class="card-text" style="font-size: 1rem;">加入討論，分享想法與經驗。</p>
-                </div>
-            </a>
-        </div>
+      </a>
     </div>
+    <!-- Knowledge Base Link -->
+    <div class="col-md-4 mb-4">
+      <a href="{% url 'article_list' %}" class="card text-dark shadow-lg rounded">
+        <div class="card-body text-center p-4">
+          <h5 class="card-title" style="font-size: 1.5rem; font-weight: 500;">知識庫</h5>
+          <p class="card-text" style="font-size: 1rem;">探索科技與加密貨幣的知識庫。</p>
+        </div>
+      </a>
+    </div>
+    <!-- Forum Link -->
+    <div class="col-md-4 mb-4">
+      <a href="{% url 'forum_index' %}" class="card text-dark shadow-lg rounded">
+        <div class="card-body text-center p-4">
+          <h5 class="card-title" style="font-size: 1.5rem; font-weight: 500;">討論區</h5>
+          <p class="card-text" style="font-size: 1rem;">加入討論，分享想法與經驗。</p>
+        </div>
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- Authentication Section -->
+<!-- 登入 / 登出按鈕區 -->
 <section class="container py-5 text-center">
-    {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}" class="btn btn-danger btn-lg">登出 ({{ user.username }})</a>
-    {% else %}
-    <a href="{% url 'login' %}" class="btn btn-success btn-lg">登入 / 註冊</a>
-    {% endif %}
+  {% if user.is_authenticated %}
+  <a href="{% url 'logout' %}" class="btn btn-danger btn-lg">登出 ({{ user.username }})</a>
+  {% else %}
+  <a href="{% url 'login' %}" class="btn btn-success btn-lg">登入 / 註冊</a>
+  {% endif %}
 </section>
 
-<!-- Custom CSS for gradient, button hover effects, and fonts -->
 <style>
-    .bg-gradient {
-        background: linear-gradient(to right, #2c3e50, #2980b9); /* 深藍到淺藍 */
-    }
-    .btn-primary {
-        background: #4e73df;
-        border-color: #4e73df;
-        font-weight: bold;
-        transition: transform 0.3s ease;
-    }
-
-    .btn-primary:hover {
-        transform: scale(1.1);
-    }
-
-    .btn-lg {
-        border-radius: 25px;
-        padding: 12px 30px;
-    }
-
-    .card {
-        border-radius: 15px;
-        transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
+  /* Hero 漸變背景 */
+  .bg-gradient {
+    background: linear-gradient(to right, #4e73df, #1cc88a);
+  }
+  .btn-primary {
+    background: #4e73df;
+    border-color: #4e73df;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+  }
+  .btn-primary:hover {
+    transform: scale(1.1);
+  }
 </style>
 {% endblock %}
