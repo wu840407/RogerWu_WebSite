@@ -8,7 +8,7 @@
 <section class="hero bg-gradient text-white text-center py-5">
     <h1 class="display-4 mb-3" style="font-size: 4rem; font-weight: bold; font-family: 'Poppins', sans-serif;">歡迎來到 Roger 的研究室</h1>
     <p class="lead mb-4" style="font-size: 1.25rem; font-family: 'Roboto', sans-serif;">探索科技、知識和討論的無限世界</p>
-    <a href="#section-links" class="btn btn-primary btn-lg">開始瀏覽</a>
+    <a href="{% url 'cv' %}" class="btn btn-primary btn-lg">開始瀏覽</a>
 </section>
 
 <!-- Main Links Section -->
@@ -57,7 +57,7 @@
 <!-- Custom CSS for gradient, button hover effects, and fonts -->
 <style>
     .bg-gradient {
-        background: linear-gradient(to right, #4e73df, #1cc88a);
+        background: linear-gradient(to right, #4e73df, #1cc88a); /* 深藍到綠色漸變 */
     }
 
     .btn-primary {
