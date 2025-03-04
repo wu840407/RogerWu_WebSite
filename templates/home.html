@@ -4,31 +4,77 @@
 {% block title %}首頁 - Roger的研究室{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-    <div class="jumbotron p-5 bg-light rounded">
-        <h1 class="display-4 text-center">歡迎來到 Roger 的研究室</h1>
-        <p class="lead text-center">請選擇你想要瀏覽的區域：</p>
-        <hr class="my-4">
-        <div class="list-group">
-            <a href="{% url 'post_list' %}" class="list-group-item list-group-item-action">
-                部落格
+<!-- Hero Section -->
+<section class="hero bg-light text-dark text-center py-5" style="background-color: #f0f8ff;">
+    <h1 class="display-4 mb-3" style="font-size: 3rem; font-weight: bold;">歡迎來到 Roger 的研究室</h1>
+    <p class="lead mb-4" style="font-size: 1.25rem;">探索科技、知識和討論的無限世界</p>
+    <a href="#section-links" class="btn btn-gradient btn-lg">開始瀏覽</a>
+</section>
+
+<!-- Main Links Section -->
+<section id="section-links" class="container py-5">
+    <h2 class="text-center mb-4" style="font-size: 2rem; font-weight: bold;">請選擇你想要瀏覽的區域：</h2>
+    <div class="row">
+        <!-- Blog Link -->
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'post_list' %}" class="card text-dark shadow-lg" style="border-radius: 15px;">
+                <div class="card-body text-center p-4">
+                    <h5 class="card-title" style="font-size: 1.5rem; font-weight: 500;">部落格</h5>
+                    <p class="card-text" style="font-size: 1rem;">閱讀我的最新文章與研究成果。</p>
+                </div>
             </a>
-            <a href="{% url 'article_list' %}" class="list-group-item list-group-item-action">
-                知識庫
+        </div>
+        <!-- Knowledge Base Link -->
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'article_list' %}" class="card text-dark shadow-lg" style="border-radius: 15px;">
+                <div class="card-body text-center p-4">
+                    <h5 class="card-title" style="font-size: 1.5rem; font-weight: 500;">知識庫</h5>
+                    <p class="card-text" style="font-size: 1rem;">探索科技與加密貨幣的知識庫。</p>
+                </div>
             </a>
-            <a href="{% url 'forum_index' %}" class="list-group-item list-group-item-action">
-                討論區
+        </div>
+        <!-- Forum Link -->
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'forum_index' %}" class="card text-dark shadow-lg" style="border-radius: 15px;">
+                <div class="card-body text-center p-4">
+                    <h5 class="card-title" style="font-size: 1.5rem; font-weight: 500;">討論區</h5>
+                    <p class="card-text" style="font-size: 1rem;">加入討論，分享想法與經驗。</p>
+                </div>
             </a>
-            {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}" class="list-group-item list-group-item-action">
-                登出 ({{ user.username }})
-            </a>
-            {% else %}
-            <a href="{% url 'login' %}" class="list-group-item list-group-item-action">
-                登入 / 註冊
-            </a>
-            {% endif %}
         </div>
     </div>
-</div>
+</section>
+
+<!-- Authentication Section -->
+<section class="container py-5 text-center">
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}" class="btn btn-danger btn-lg" style="border-radius: 20px; transition: all 0.3s ease;">登出 ({{ user.username }})</a>
+    {% else %}
+    <a href="{% url 'login' %}" class="btn btn-success btn-lg" style="border-radius: 20px; transition: all 0.3s ease;">登入 / 註冊</a>
+    {% endif %}
+</section>
+
+<!-- Custom CSS for gradient and button hover effect -->
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        color: white;
+        border-radius: 25px;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(to right, #2575fc, #6a11cb);
+        transform: scale(1.05);
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+</style>
 {% endblock %}
