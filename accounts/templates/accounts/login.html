@@ -1,14 +1,35 @@
-<!-- accounts/templates/accounts/login.html -->
+<!-- templates/login.html -->
 {% extends "base.html" %}
 
-{% block title %}登入 - Roger的研究室{% endblock %}
+{% block title %}登入 / 註冊 - Roger的研究室{% endblock %}
 
 {% block content %}
-<h2>登入</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">登入</button>
-</form>
-<p>還沒有帳號？ <a href="{% url 'register' %}">點此註冊</a></p>
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">登入 / 註冊</h3>
+                    <form method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">使用者名稱</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">密碼</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">登入</button>
+                        </div>
+                    </form>
+                    <div class="mt-3 text-center">
+                        <p>還沒有帳號? <a href="{% url 'register' %}" class="btn btn-link">註冊</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
