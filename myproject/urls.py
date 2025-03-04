@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import home  # 引入剛才建立的 home 視圖
+from .views import home, cv_view  # 引入剛才建立的 home 視圖
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +24,6 @@ urlpatterns = [
     path('blog/', include('blog.urls')),               # 部落格文章
     path('knowledgebase/', include('knowledgebase.urls')),  # 知識庫（BTC、ADA介紹）
     path('forum/', include('forum.urls')),             # 討論區
+    path('cv/', cv_view, name='cv'),   
     path('', home, name='home'),  # 根目錄路徑
 ]
