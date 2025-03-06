@@ -98,12 +98,12 @@ AUTHENTICATION_BACKENDS = [
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+     }
+ }
 # 讀取環境變數設定
 # POSTGRES_DB = os.environ.get('POSTGRES_DB', 'main_db_h0bb')
 # POSTGRES_USER = os.environ.get('POSTGRES_USER', 'roger')
@@ -121,12 +121,12 @@ AUTHENTICATION_BACKENDS = [
 #         'PORT': POSTGRES_PORT,
 #     }
 # }
-DATABASES = {
-    'default': dj_database_url.config(
-        default="postgresql://roger:80KVJNngx71076Vrp4iUkzNscqhSnITO@dpg-cuvvm35svqrc73ag1mh0-a.oregon-postgres.render.com/main_db_h0bb",
-        conn_max_age=600,  # 保持連線
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default="postgresql://roger:80KVJNngx71076Vrp4iUkzNscqhSnITO@dpg-cuvvm35svqrc73ag1mh0-a.oregon-postgres.render.com/main_db_h0bb",
+#         conn_max_age=600,  # 保持連線
+#     )
+# }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
