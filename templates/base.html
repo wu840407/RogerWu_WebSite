@@ -1,24 +1,28 @@
-<!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Roger的研究室{% endblock %}</title>
-
-  <!-- Bootstrap & Google Fonts -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
-
+  
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6285321865790830"
+          crossorigin="anonymous"></script>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
   <style>
-    /* 全局背景：淺灰 */
+    /* 全局樣式 */
     body {
       margin: 0;
       padding: 0;
-      background-color: #f4f7fc; /* 你想要的整站背景顏色 */
       font-family: 'Roboto', sans-serif;
+      background-color: #f4f7fc;  /* 全站背景色（淺灰） */
     }
-
     /* 導覽列 */
     .navbar {
       background-color: #343a40;
@@ -29,9 +33,60 @@
     .navbar-nav .nav-link:hover {
       color: #1cc88a !important;
     }
+    /* 主要佈局：左右側廣告與主要內容 */
+    .layout-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+    .ad-container {
+      width: 160px;
+      margin: 10px;
+    }
+    .content-container {
+      flex: 1;
+    }
+    /* 底部 */
+    footer {
+      background-color: #343a40;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    /* 按鈕與卡片效果 */
+    .btn-primary {
+      background: #4e73df;
+      border-color: #4e73df;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: scale(1.1);
+    }
+    .btn-lg {
+      border-radius: 25px;
+      padding: 12px 30px;
+    }
+    .card {
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    /* 小螢幕隱藏左右側廣告 */
+    @media (max-width: 768px) {
+      .ad-container {
+        display: none;
+      }
+    }
   </style>
+  
+  {% block extra_head %}{% endblock %}
 </head>
-
 <body>
   <!-- 導覽列 -->
   <nav class="navbar navbar-expand-lg navbar-dark">
@@ -55,11 +110,61 @@
       </div>
     </div>
   </nav>
-
-  <!-- 主要內容區域 -->
-  {% block content %}{% endblock %}
-
+  
+  <!-- 主要頁面內容與左右側廣告 -->
+  <div class="layout-wrapper">
+    <!-- 左側廣告 -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6285321865790830"
+           data-ad-slot="LEFT_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
+    <!-- 主要內容 -->
+    <div class="content-container">
+      {% block content %}
+      <!-- 各頁面內容將在這裡插入 -->
+      {% endblock %}
+    </div>
+    
+    <!-- 右側廣告 -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6285321865790830"
+           data-ad-slot="RIGHT_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+  
+  <!-- 底部廣告與頁尾 -->
+  <footer>
+    <div class="container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6285321865790830"
+           data-ad-slot="BOTTOM_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <p class="mt-3">Copyright © Roger的研究室</p>
+    </div>
+  </footer>
+  
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  {% block extra_js %}{% endblock %}
 </body>
 </html>
