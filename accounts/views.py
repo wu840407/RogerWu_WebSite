@@ -31,4 +31,5 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.info(request, "您已成功登出。")
-    return redirect("login")
+    return redirect("account_login")
+
