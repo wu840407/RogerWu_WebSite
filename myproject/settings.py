@@ -42,6 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # django-allauth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
      # 自訂 App
     'accounts',
     'blog',
@@ -57,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -79,7 +86,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-
+SITE_ID = 1
+AUTH_USER_MODEL = 'accounts.CustomUser'
+ACCOUNT_LOGIN_METHODS = {"email"}  # 只允許使用 email 登入
+ACCOUNT_EMAIL_REQUIRED = True  # 強制要求 email
+ACCOUNT_EMAIL_VERIFICATION = "none"  # 不驗證 email，或改為 'mandatory' 強制驗證
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # 預設後端
+    'allauth.account.auth_backends.AuthenticationBackend',  # allauth 後端
+]
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
