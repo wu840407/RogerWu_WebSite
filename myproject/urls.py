@@ -16,14 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import home, cv_view  # 引入剛才建立的 home 視圖
+from myproject.views import home, cv_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),       # 使用者認證相關
-    path('blog/', include('blog.urls')),               # 部落格文章
-    path('knowledgebase/', include('knowledgebase.urls')),  # 知識庫（BTC、ADA介紹）
+    
+    # 使用 django-allauth 提供完整的登入/註冊功能（包含 Google 登入）
+    path('accounts/', include('allauth.urls')),
+    
+    # 如果你還有自訂的帳戶相關 URL，請考慮用不同的前綴，避免衝突
+    # path('custom_accounts/', include('accounts.urls')),
+    
+    path('blog/', include('blog.urls')),               # 部落格
+    path('knowledgebase/', include('knowledgebase.urls')),  # 知識庫（例如 BTC、ADA介紹）
     path('forum/', include('forum.urls')),             # 討論區
-    path('cv/', cv_view, name='cv'),   
-    path('', home, name='home'),  # 根目錄路徑
+    path('cv/', cv_view, name='cv'),                   # CV 頁面
+    path('', home, name='home'),                       # 根目錄首頁
 ]
