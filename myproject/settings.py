@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'blog',
     'knowledgebase',
     'forum',
+    "crispy_forms",
+    "crispy_bootstrap5",  # 確保使用 Bootstrap 5 風格
 ]
 
 MIDDLEWARE = [
@@ -84,6 +86,8 @@ TEMPLATES = [
     },
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 SITE_ID = 1

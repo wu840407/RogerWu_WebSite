@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+
 {% block title %}登出 - Roger的研究室{% endblock %}
 
 {% block content %}
@@ -13,6 +13,7 @@
 
           <form method="POST" action="{% url 'account_logout' %}">
             {% csrf_token %}
+            {{ form|crispy }}
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-danger btn-lg">確定登出</button>
               <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg">取消</a>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}登入 / 註冊 - Roger的研究室{% endblock %}
 
@@ -21,7 +21,7 @@
 
           <form method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
-            
+            {{ form|crispy }}
             <!-- Email / Username -->
             <div class="mb-3">
               <label for="id_login" class="form-label">使用者名稱或電子郵件</label>
