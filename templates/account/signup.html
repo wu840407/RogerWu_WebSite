@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}註冊 - Roger的研究室{% endblock %}
 
@@ -13,8 +13,12 @@
 
           <form method="POST" action="{% url 'account_signup' %}">
             {% csrf_token %}
-            
+            {{ form|crispy }}
             <!-- 使用 django-allauth 的表單 -->
+            <div class="mb-3">
+              <label for="id_username" class="form-label">使用者名稱</label>
+              <input type="text" class="form-control form-control-lg" id="id_username" name="username" required>
+            </div>
 
             <div class="mb-3">
               <label for="id_email" class="form-label">電子郵件</label>
