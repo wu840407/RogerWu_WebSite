@@ -19,6 +19,7 @@ from django.urls import path, include
 from myproject.views import home, cv_view
 
 urlpatterns = [
+    path('grappelli/', include('grappelli.urls')),  # grappelli URL
     path('admin/', admin.site.urls),
     
     # 使用 django-allauth 提供完整的登入/註冊功能（包含 Google 登入）

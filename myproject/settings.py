@@ -35,6 +35,7 @@ ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',')
 
 INSTALLED_APPS = [
     # Django 內建 App
+    'grappelli',  # 必須放在最前面
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,9 +89,10 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 SITE_ID = 1
 AUTH_USER_MODEL = 'accounts.CustomUser'
-ACCOUNT_LOGIN_METHODS = {"email"}  # 只允許使用 email 登入
-ACCOUNT_EMAIL_REQUIRED = True  # 強制要求 email
-ACCOUNT_EMAIL_VERIFICATION = "none"  # 不驗證 email，或改為 'mandatory' 強制驗證
+ACCOUNT_LOGIN_METHODS = {'email'}
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # 告訴 allauth 這個 User 沒有 username
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # 預設後端
     'allauth.account.auth_backends.AuthenticationBackend',  # allauth 後端
