@@ -71,7 +71,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-         'DIRS': [BASE_DIR / 'templates'],  # BASE_DIR 是專案根目錄的 Path 物件
+        'DIRS': [BASE_DIR / 'templates'],  # BASE_DIR 是專案根目錄的 Path 物件
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
