@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>您確定要登出嗎？</h2>
+    <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        <button type="submit">確認登出</button>
+    </form>
+</div>
+{% endblock %}
