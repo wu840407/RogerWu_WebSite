@@ -53,8 +53,6 @@ INSTALLED_APPS = [
     'blog',
     'knowledgebase',
     'forum',
-    'crispy_forms',
-    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -88,8 +86,6 @@ TEMPLATES = [
 
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"
 SITE_ID = 1
 AUTH_USER_MODEL = 'accounts.CustomUser'
 LOGIN_REDIRECT_URL = "/"
