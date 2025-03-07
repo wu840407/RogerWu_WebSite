@@ -1,14 +1,57 @@
-<!-- accounts/templates/accounts/register.html -->
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
-{% block title %}註冊{% endblock %}
+{% block title %}註冊 - Roger的研究室{% endblock %}
 
 {% block content %}
-<h2>註冊</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">註冊</button>
-</form>
-<p>已有帳號？ <a href="{% url 'login' %}">點此登入</a></p>
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body p-4">
+          <h3 class="text-center fw-bold mb-4">建立新帳號</h3>
+
+          <form method="POST" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            
+            <!-- 使用 django-allauth 的表單 -->
+
+            <div class="mb-3">
+              <label for="id_email" class="form-label">電子郵件</label>
+              <input type="email" class="form-control form-control-lg" id="id_email" name="email" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="id_password1" class="form-label">密碼</label>
+              <input type="password" class="form-control form-control-lg" id="id_password1" name="password1" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="id_password2" class="form-label">確認密碼</label>
+              <input type="password" class="form-control form-control-lg" id="id_password2" name="password2" required>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary btn-lg">註冊</button>
+            </div>
+          </form>
+
+          <hr>
+
+          <!-- Google 註冊按鈕 -->
+          <div class="text-center">
+            <a href="{% provider_login_url 'google' %}" class="btn btn-light btn-lg border w-100">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google Logo" style="width: 20px; margin-right: 10px;">
+              使用 Google 註冊
+            </a>
+          </div>
+
+          <div class="mt-4 text-center">
+            <p>已經有帳號？ <a href="{% url 'account_login' %}" class="text-decoration-none">登入</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

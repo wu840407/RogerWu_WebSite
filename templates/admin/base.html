@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extrastyle %}
+  <!-- 這裡載入 Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'css/custom_admin.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block branding %}
+  <h1 class="text-center py-3">🚀 Roger 的管理後台</h1>
+{% endblock %}

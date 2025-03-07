@@ -3,7 +3,6 @@ from django.urls import path, include
 from myproject.views import home, cv_view
 
 urlpatterns = [
-    path('grappelli/', include('grappelli.urls')),  # grappelli URL
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),       # allauth 的完整帳號功能（包含 Google 登入）
     path('blog/', include('blog.urls')),
