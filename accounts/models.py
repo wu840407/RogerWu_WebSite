@@ -30,6 +30,7 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    username = None  
     email = models.EmailField(unique=True, verbose_name="電子郵件地址")
     first_name = models.CharField(max_length=30, blank=True, verbose_name="名字")
     last_name = models.CharField(max_length=30, blank=True, verbose_name="姓氏")

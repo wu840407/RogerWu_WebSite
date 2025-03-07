@@ -89,15 +89,20 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 SITE_ID = 1
 AUTH_USER_MODEL = 'accounts.CustomUser'
-ACCOUNT_LOGIN_METHODS = {'email'}
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # 告訴 allauth 這個 User 沒有 username
-ACCOUNT_EMAIL_REQUIRED = True
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"  # 登出後導向登入頁面
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None  
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_LOGIN_METHODS = {'email'}  # 使用 email 登入
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # 或根據需求設置為 'mandatory'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # 預設後端
     'allauth.account.auth_backends.AuthenticationBackend',  # allauth 後端
 ]
-
+ACCOUNT_FORMS = {
+    'signup': 'accounts.forms.CustomSignupForm',
+}
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
