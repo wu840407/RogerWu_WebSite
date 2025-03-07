@@ -11,7 +11,7 @@ def register_view(request):
         if form.is_valid():
             form.save()  # 儲存新使用者
             messages.success(request, "註冊成功！您現在可以登入了。")
-            return redirect("login")  # 註冊成功後導向登入頁面
+            return redirect("account_login")  # 註冊成功後導向登入頁面
     else:
         form = RegistrationForm()
     return render(request, "accounts/register.html", {"form": form})

@@ -95,6 +95,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # 預設後端
     'allauth.account.auth_backends.AuthenticationBackend',  # allauth 後端
 ]
+
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
