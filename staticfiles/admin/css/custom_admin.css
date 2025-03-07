@@ -1,0 +1,20 @@
+/* 讓 Django JET 風格與 Bootstrap 5 一致 */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+.jet-dashboard {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.module caption {
+    background: #198754 !important; /* 修改表頭顏色 */
+    color: white !important;
+    font-size: 1.2rem;
+}
+.button, input[type="submit"], input[type="button"], .grp-button {
+    background: #28a745 !important; /* 按鈕顏色 */
+    color: white !important;
+}

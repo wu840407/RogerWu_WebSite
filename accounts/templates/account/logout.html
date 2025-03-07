@@ -1,11 +1,26 @@
 {% extends "base.html" %}
 
+{% block title %}登出 - Roger的研究室{% endblock %}
+
 {% block content %}
-<div class="container">
-    <h2>您確定要登出嗎？</h2>
-    <form method="post" action="{% url 'account_logout' %}">
-        {% csrf_token %}
-        <button type="submit">確認登出</button>
-    </form>
-</div>
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body text-center p-4">
+          <h3 class="fw-bold mb-3">確定要登出嗎？</h3>
+          <p class="text-muted">如果您想繼續使用本站，請點選「取消」返回。</p>
+
+          <form method="POST" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-danger btn-lg">確定登出</button>
+              <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg">取消</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
