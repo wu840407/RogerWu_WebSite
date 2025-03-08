@@ -1,0 +1,18 @@
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社群登入 - Roger的研究室</title>
+    <script>
+        // 自動導向 Google 登入頁面
+        window.location.href = "{% provider_login_url 'google' %}";
+    </script>
+</head>
+<body>
+    <p>正在導向 Google 登入...</p>
+    <p>如果沒有自動跳轉，請 <a href="{% provider_login_url 'google' %}">點擊這裡</a>。</p>
+</body>
+</html>
