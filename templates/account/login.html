@@ -21,7 +21,7 @@
 
           <form method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
-            {{ form|crispy }}
+
             <!-- Email / Username -->
             <div class="mb-3">
               <label for="id_login" class="form-label">使用者名稱或電子郵件</label>
@@ -50,12 +50,23 @@
 
           <!-- Google 登入按鈕 -->
           <div class="text-center">
-            <a href="{% provider_login_url 'google' %}" class="btn btn-light btn-lg border w-100">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google Logo" style="width: 20px; margin-right: 10px;">
+            <button onclick="popupGoogleLogin()" class="btn btn-light btn-lg border w-100">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" style="width: 20px; margin-right: 10px;">
               使用 Google 帳戶登入
-            </a>
+            </button>
           </div>
-
+          <script>
+            function popupGoogleLogin() {
+              const width = 500;
+              const height = 600;
+              const left = (screen.width - width) / 2;
+              const top = (screen.height - height) / 2;
+              
+              const googleLoginUrl = "{% provider_login_url 'google' %}";
+              
+              window.open(googleLoginUrl, "Google Login", `width=${width},height=${height},top=${top},left=${left},resizable=yes`);
+            }
+          </script>
           <div class="mt-4 text-center">
             <p class="mb-1">還沒有帳號？ <a href="{% url 'account_signup' %}" class="text-decoration-none">註冊</a></p>
             <p><a href="{% url 'account_reset_password' %}" class="text-decoration-none">忘記密碼？</a></p>

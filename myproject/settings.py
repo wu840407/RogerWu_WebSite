@@ -28,8 +28,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'k4YoCmgmrmR7GjU42b9eSupNzqxKceqVv1C58bChcR
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 # 從環境變數讀取 ALLOWED_HOSTS，這裡假設多個主機名稱用逗號隔開
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',')
-
+# ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'yourdomain.com']
 
 # Application definition
 
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     # django-allauth apps
     'allauth',
     'allauth.account',
@@ -93,6 +92,19 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 WSGI_APPLICATION = 'myproject.wsgi.application'
 SITE_ID = 1
 AUTH_USER_MODEL = 'accounts.CustomUser'
+SOCIALACCOUNT_ADAPTER = "allauth.socialaccount.adapter.DefaultSocialAccountAdapter"
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": "你的 Google Client ID",
+            "secret": "你的 Google Client Secret",
+        },
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {"access_type": "online"},
+    }
+}
+
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"  # 登出後導向登入頁面
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None  
