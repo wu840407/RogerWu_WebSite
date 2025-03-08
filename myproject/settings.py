@@ -73,10 +73,11 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # BASE_DIR 是專案根目錄的 Path 物件
+        'DIRS': [BASE_DIR / 'templates'],  # 這裡包含全局模板資料夾
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                # 預設 context 處理器...
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
