@@ -2,46 +2,8 @@
 {% load static %}
 
 {% block title %}我的後台 - {{ title }}{% endblock %}
-<link rel="stylesheet" href="{% static 'css/custom_admin.css' %}">
 {% block branding %}
   <div class="text-center py-3">
-    <img src="{% static 'img/logo.jpg' %}" alt="Logo" height="50">
     <h1 class="mt-2">🚀 Roger 的管理後台</h1>
   </div>
-{% endblock %}
-
-{% block content %}
-<div class="container mt-4">
-  <div class="row">
-    <!-- Blog -->
-    <div class="col-md-4">
-      <div class="card shadow-lg">
-        <div class="card-body text-center">
-          <h4>📖 Blog</h4>
-          <a href="{% url 'admin:blog_post_changelist' %}" class="btn btn-primary">管理文章</a>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Forum -->
-    <div class="col-md-4">
-      <div class="card shadow-lg">
-        <div class="card-body text-center">
-          <h4>💬 Forum</h4>
-          <a href="{% url 'admin:forum_thread_changelist' %}" class="btn btn-success">管理討論串</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Knowledgebase -->
-    <div class="col-md-4">
-      <div class="card shadow-lg">
-        <div class="card-body text-center">
-          <h4>📚 知識庫</h4>
-          <a href="{% url 'admin:knowledgebase_article_changelist' %}" class="btn btn-warning">管理知識文章</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock %}
