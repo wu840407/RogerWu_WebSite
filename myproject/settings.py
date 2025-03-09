@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # django-allauth apps
     'allauth',
     'allauth.account',
@@ -104,8 +105,8 @@ SOCIALACCOUNT_PROVIDERS = {
         "AUTH_PARAMS": {"access_type": "online"},
     }
 }
-
-LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = '/accounts/login/'  # 這是你的登入頁面
+LOGIN_REDIRECT_URL = '/admin/'  # 登入後導向 Django Admin
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"  # 登出後導向登入頁面
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None  
 ACCOUNT_USERNAME_REQUIRED = False
