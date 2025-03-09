@@ -18,3 +18,11 @@ body {
     background: #28a745 !important; /* 按鈕顏色 */
     color: white !important;
 }
+.submit-row input.default {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+.submit-row input.default:hover {
+    background-color: #0056b3;
+}

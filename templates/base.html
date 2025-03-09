@@ -105,8 +105,11 @@
           <li class="nav-item"><a class="nav-link" href="{% url 'article_list' %}">知識庫</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'forum_index' %}">討論區</a></li>
           {% if user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">登出 ({{ user.username }})</a></li>
-          {% else %}
+            <div class="text-end px-3">
+              <span class="me-3">👤 {{ user.username }}</span>
+              <a href="{% url 'admin:logout' %}" class="btn btn-danger btn-sm">登出</a>
+            </div>
+          {% endif %}
           <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">登入 / 註冊</a></li>
           {% endif %}
         </ul>
