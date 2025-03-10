@@ -59,7 +59,7 @@
 <section class="container py-5 text-center">
   {% if user.is_authenticated %}
     <a href="{% url 'account_logout' %}" class="btn btn-danger btn-lg">
-      登出 ({{ user.username }})
+      登出 ({{ user.email }})
     </a>
   {% else %}
     <a href="{% url 'account_login' %}" class="btn btn-success btn-lg">
