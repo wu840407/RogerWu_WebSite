@@ -3,7 +3,7 @@
 from .settings import *  # 引入基礎設定
 
 # 關閉 Debug 模式
-DEBUG = True
+DEBUG = False
 
 # 設定允許存取的主機名稱，請填入你網站的網域或 IP
 ALLOWED_HOSTS = ['rogerwu-website.onrender.com']
