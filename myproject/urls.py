@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from myproject.views import home, cv_view
+from .views import home, cv_view, google_login_redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('forum/', include('forum.urls')),
     path('cv/', cv_view, name='cv'),
     path('', home, name='home'),
+    path('google-login/', google_login_redirect, name='google-login-direct'),
 ]

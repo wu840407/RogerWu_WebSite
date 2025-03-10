@@ -50,11 +50,35 @@
 
           <!-- Google 登入按鈕 -->
           <div class="text-center">
-            <a href="{% provider_login_url 'google' %}" class="btn btn-light btn-lg border w-100">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" style="width: 20px; margin-right: 10px;">
-              使用 Google 帳戶登入
-            </a>
-          </div>
+            <button onclick="openGoogleLogin()" class="btn btn-light btn-lg border w-100">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
+                     alt="Google Logo" style="width: 20px; margin-right: 10px;">
+                使用 Google 帳戶登入
+            </button>
+        </div>
+        
+        <script>
+        function openGoogleLogin() {
+            let width = 600;
+            let height = 600;
+            let left = (screen.width - width) / 2;
+            let top = (screen.height - height) / 2;
+            
+            let googleLoginURL = "{% url 'google-login-direct' %}";
+        
+            let popup = window.open(googleLoginURL, "GoogleLogin", 
+                `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`
+            );
+        
+            let timer = setInterval(function() {
+                if (popup.closed) {
+                    clearInterval(timer);
+                    window.location.reload(); // 登入完成後刷新頁面
+                }
+            }, 1000);
+        }
+        </script>
+        
           <div class="mt-4 text-center">
             <p class="mb-1">還沒有帳號？ <a href="{% url 'account_signup' %}" class="text-decoration-none">註冊</a></p>
             <p><a href="{% url 'account_reset_password' %}" class="text-decoration-none">忘記密碼？</a></p>
