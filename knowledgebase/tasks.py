@@ -3,8 +3,8 @@ import datetime
 import time
 from background_task import background
 from knowledgebase.models import Article
-
-BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAAACPzwEAAAAA9whphJiB3PQsty4C4M%2BqfpCVD9o%3DhksBiKPxYg5YYtR4WjwALmXDOSlTpEDune44x6bp5rNCAsVrVX'
+import os
+BEARER_TOKEN = os.getenv('TWITTER_API')
 
 # 驗證 Twitter API
 client = tweepy.Client(bearer_token=BEARER_TOKEN)
