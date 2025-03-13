@@ -1,48 +1,69 @@
 import tweepy
 import datetime
+import time
 from background_task import background
 from knowledgebase.models import Article
 
+BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAAACPzwEAAAAA9whphJiB3PQsty4C4M%2BqfpCVD9o%3DhksBiKPxYg5YYtR4WjwALmXDOSlTpEDune44x6bp5rNCAsVrVX'
+
+# 驗證 Twitter API
+client = tweepy.Client(bearer_token=BEARER_TOKEN)
+
 @background(schedule=60*60)  # 每小時執行一次
 def fetch_twitter_data():
-    print("開始執行 Twitter 爬蟲任務...")
-    consumer_key = 'ZRwYdyAH0z5B7sIzh1eM3c3Kb'
-    consumer_secret = 'UK0WREo3LkvMBZg619kkBdp3udz1AhjODutq0lUYBgAWtQFDq0'
-    access_token = '1899791300645584896-ZUbVg17nGzOfInsv6vBVqx38e2StVe'
-    access_token_secret = 'rhOh4nDRAKYgo7PuFqX1bWQwplirRtPV3vnUHkT3aweYU'
-    
-    # 驗證 Twitter API
-    auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
-    api = tweepy.API(auth)
+    print("📢 開始執行 Twitter 爬蟲任務...")
     
     # 設定抓取範圍：過去一小時的推文
-    one_hour_ago = datetime.datetime.now() - datetime.timedelta(hours=1)
+    one_hour_ago = datetime.datetime.utcnow() - datetime.timedelta(hours=1)
     
     # 搜尋關鍵字（例如 ADA）
     user1 = "IOHK_Charles"  # 更換為特定用戶
     user2 = "Cardano_CF"
-    query = f"from:user1 OR from:user2 ADA crypto Cardano"
+    query = f"from:{user1} OR from:{user2} ADA crypto Cardano"
     
-    # 取得推文（注意：Twitter API v1.1 沒有直接的時間參數，所以你可以先抓取一定數量後，依據 tweet.created_at 過濾）
-    tweets = tweepy.Cursor(api.search_tweets, q=query, lang="zh", tweet_mode="extended").items(100)
-    
-    new_articles = 0
-    for tweet in tweets:
-        # 只保留過去一小時的推文
-        if tweet.created_at >= one_hour_ago:
-            # 檢查是否已存在（可以根據 tweet.id 判斷，這裡簡單示例不做重複檢查）
-            title = f"{tweet.user.screen_name} - {tweet.created_at.strftime('%Y-%m-%d %H:%M')}"
-            content = tweet.full_text
-            source = "Twitter ADA"
-            
-            # 建立一篇新文章
-            Article.objects.create(
-                title=title,
-                content=content,
-                source=source,
-                published = True,
-                published_date=tweet.created_at  # 或 auto_now_add
+    max_retries = 5  # 最多重試 5 次
+    retry_delay = 10  # 初始等待 10 秒
+
+    for attempt in range(max_retries):
+        try:
+            # 取得推文
+            tweets = client.search_recent_tweets(
+                query=query,
+                max_results=5,
+                tweet_fields=["created_at"],
+                expansions=["author_id"],  # 這樣才能取得 user 資訊
+                user_fields=["username"]
             )
-            new_articles += 1
-    
-    print(f"爬取完成！新增文章 {new_articles} 篇。")
+
+            new_articles = 0
+            if tweets.data:
+                user_dict = {user["id"]: user["username"] for user in tweets.includes.get("users", [])}
+
+                for tweet in tweets.data:
+                    if tweet.created_at and tweet.created_at >= one_hour_ago:
+                        username = user_dict.get(str(tweet.author_id), f"User {tweet.author_id}")
+
+                        # 建立文章標題與內容
+                        title = f"{username} - {tweet.created_at.strftime('%Y-%m-%d %H:%M')}"
+                        content = tweet.text
+                        source = "Twitter ADA"
+
+                        # 儲存到資料庫
+                        Article.objects.create(
+                            title=title,
+                            content=content,
+                            source=source,
+                            published=True,
+                            published_date=tweet.created_at
+                        )
+                        new_articles += 1
+
+            print(f"🎉 爬取完成！新增文章 {new_articles} 篇。")
+            return  # 成功執行，結束函數
+
+        except tweepy.errors.TooManyRequests:
+            print(f"⏳ API 過載，等待 {retry_delay} 秒後重試...")
+            time.sleep(retry_delay)
+            retry_delay *= 2  # 每次等待時間加倍
+
+    print("❌ 達到最大重試次數，請稍後再試！")
