@@ -43,12 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'background_task',
     # django-allauth apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-
+    
      # 自訂 App
     'accounts',
     'blog',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
     'forum',
     "crispy_forms",
     "crispy_bootstrap5",  # 確保使用 Bootstrap 5 風格
+
 ]
 
 MIDDLEWARE = [
@@ -201,3 +203,4 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
