@@ -4,7 +4,7 @@ from .tasks import fetch_twitter_data
 from django.http import HttpResponse
 
 def article_list(request):
-    articles = Article.objects.filter(published=True).order_by('-created_at')
+    articles = Article.objects.filter(published=True).order_by('-published_date')
     return render(request, 'knowledgebase/list.html', {'articles': articles})
 
 def article_detail(request, article_id):
