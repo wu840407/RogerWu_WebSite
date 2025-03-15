@@ -4,17 +4,20 @@ import time
 from background_task import background
 from knowledgebase.models import Article
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 BEARER_TOKEN = os.getenv('TWITTER_API')
 
 # 驗證 Twitter API
 client = tweepy.Client(bearer_token=BEARER_TOKEN)
 
-@background(schedule=60*60)  # 每小時執行一次
+@background(schedule=60*60*24)  # 每小時執行一次
 def fetch_twitter_data():
     print("📢 開始執行 Twitter 爬蟲任務...")
     
     # 設定抓取範圍：過去一小時的推文
-    one_hour_ago = datetime.datetime.utcnow() - datetime.timedelta(hours=1)
+    one_hour_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=24)
     
     # 搜尋關鍵字（例如 ADA）
     user1 = "IOHK_Charles"  # 更換為特定用戶
@@ -29,7 +32,7 @@ def fetch_twitter_data():
             # 取得推文
             tweets = client.search_recent_tweets(
                 query=query,
-                max_results=5,
+                max_results=10,
                 tweet_fields=["created_at"],
                 expansions=["author_id"],  # 這樣才能取得 user 資訊
                 user_fields=["username"]
