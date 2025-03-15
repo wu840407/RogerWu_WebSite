@@ -4,8 +4,8 @@ import time
 from background_task import background
 from knowledgebase.models import Article
 import os
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 BEARER_TOKEN = os.getenv('TWITTER_API')
 
