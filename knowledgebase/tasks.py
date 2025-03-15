@@ -9,12 +9,11 @@ BEARER_TOKEN = os.getenv('TWITTER_API')
 
 client = tweepy.Client(bearer_token=BEARER_TOKEN)
 
-@background(schedule=60*60*24)  # 每24小時執行一次
 def fetch_twitter_data():
     print("📢 開始執行 Twitter 爬蟲任務...")
 
     # 過去24小時的推文
-    one_day_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=24)
+    one_day_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=12)
 
     user1 = "IOHK_Charles"
     user2 = "Cardano_CF"
